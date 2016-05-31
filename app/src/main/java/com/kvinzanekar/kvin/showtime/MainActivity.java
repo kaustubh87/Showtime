@@ -41,12 +41,10 @@ public class MainActivity extends AppCompatActivity {
     public static final String OVERVIEW = "overview";
     public static final String RELEASE_DATE = "release_date";
     public static final String IMAGE_URL = "poster_path";
-    public static final String HTTP_URL ="http://image.tmdb.org/t/p/w500";
+    public static final String HTTP_URL = "http://image.tmdb.org/t/p/w500";
     public static final String RATING_BAR = "popularity";
     public static final String MOVIE_ID = "tmsId";
     public static final String relativeUrl = "http://www.kvinzanekar.com/webservices/sites/default/files/";
-
-
 
 
     private JSONArray results = null;
@@ -58,12 +56,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listView = (ListView)findViewById(R.id.list);
-        adapter = new CustomListViewAdapter(MainActivity.this,R.layout.list_row,movies);
+        listView = (ListView) findViewById(R.id.list);
+        adapter = new CustomListViewAdapter(MainActivity.this, R.layout.list_row, movies);
         listView.setAdapter(adapter);
 
-        listView = (ListView)findViewById(R.id.list);
-        adapter = new CustomListViewAdapter(MainActivity.this,R.layout.list_row,movies);
+        listView = (ListView) findViewById(R.id.list);
+        adapter = new CustomListViewAdapter(MainActivity.this, R.layout.list_row, movies);
         listView.setAdapter(adapter);
 
        /* StringRequest stringRequest = new StringRequest(url,
@@ -126,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
         JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, kvinapi, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                for(int i=0;i<response.length();i++) {
+                for (int i = 0; i < response.length(); i++) {
                     try {
 
                         JSONObject jsonObject = response.getJSONObject(i);
@@ -135,19 +133,17 @@ public class MainActivity extends AppCompatActivity {
                         String title = jsonObject.getString("title");
                         //Log.v("Title is ", title);
                         String description = jsonObject.getString("field_plot");
-
-                       // Log.v("Description is ", description);
+                        // Log.v("Description is ", description);
                         String imageUrl = jsonObject.getJSONObject("field_movie_image").getString("filename");
-                        imageUrl = relativeUrl+imageUrl;
+                        imageUrl = relativeUrl + imageUrl;
                         //Log.v("ImageUrl is " , relativeUrl + imageUrl);
-
                         //String releaseDate = jsonObject.getString("releaseDate");
                         //Log.v("Relase Date is" ,releaseDate);
                         String genre = jsonObject.getString("field_genre");
                         // Log.v("Genre ",genre);
                         String ratings = jsonObject.getString("field_ratings");
-                        //String yurl = jsonObject.getString("TrailerLink");
-                        //Log.v("Yurl is " ,yurl);
+                        String youtube_url = jsonObject.getJSONObject("field_youtube_trailer").getString("url");
+                        Log.v("Youtube Url is " ,youtube_url);
                         Movie movie = new Movie();
                         movie.setTitle(title);
                         movie.setDescription(description);
@@ -155,21 +151,18 @@ public class MainActivity extends AppCompatActivity {
                         movie.setGenre(genre);
                         movie.setThumbnail(imageUrl);
                         movie.setRating(ratings);
-/*
-                     if(yurl.length()!=0) {
-                         movie.setYurl(yurl);
+
+                     if(youtube_url.length()!=0) {
+                         movie.setYurl(youtube_url);
                      }
-*/
+
 
                         movies.add(movie);
 
 
                         adapter.notifyDataSetChanged();
 
-                    }
-
-
-                    catch (JSONException e) {
+                    } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
@@ -255,9 +248,7 @@ public class MainActivity extends AppCompatActivity {
 
         AppController.getInstance().addToRequestQueue(arrayRequest);
 
-       // AppController.getInstance().addToRequestQueue(arrayRequest2);
-
-
+        // AppController.getInstance().addToRequestQueue(arrayRequest2);
 
 
     }

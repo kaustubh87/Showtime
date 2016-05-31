@@ -15,6 +15,7 @@ import com.kvinzanekar.kvin.showtime.AppController;
 import com.kvinzanekar.kvin.showtime.DetailsActivity;
 import com.kvinzanekar.kvin.showtime.Model.Movie;
 import com.kvinzanekar.kvin.showtime.R;
+import com.kvinzanekar.kvin.showtime.VideoActivity;
 
 import java.util.ArrayList;
 
@@ -77,7 +78,7 @@ public class CustomListViewAdapter extends ArrayAdapter<Movie> {
              //viewHolder.description = (TextView) row.findViewById(R.id.description);
             //viewHolder.releaseDate = (TextView) row.findViewById(R.id.releaseDate);
             viewHolder.genre = (TextView) row.findViewById(R.id.genre);
-            //viewHolder.url = (TextView)row.findViewById(R.id.video);
+            viewHolder.url = (TextView)row.findViewById(R.id.video);
             viewHolder.ratingBar = (RatingBar)row.findViewById(R.id.rating);
             row.setTag(viewHolder);
 
@@ -96,15 +97,15 @@ public class CustomListViewAdapter extends ArrayAdapter<Movie> {
         viewHolder.ratingBar.setRating(Float.parseFloat(viewHolder.movie.getRating()));
         viewHolder.ratingBar.setFocusable(false);
 
-        /*if(viewHolder.movie.getYurl()!=null) {
+        if(viewHolder.movie.getYurl()!=null) {
             viewHolder.url.setText("Watch Trailer " + "Click Here");
             final ViewHolder finalViewHolder = viewHolder;
             viewHolder.url.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //Intent intent = new Intent(getContext(), VideoActivity.class);
-                    //intent.putExtra("Url", finalViewHolder.movie.getYurl());
-                   // mContext.startActivity(intent);
+                    Intent intent = new Intent(getContext(), VideoActivity.class);
+                    intent.putExtra("Url", finalViewHolder.movie.getYurl());
+                    mContext.startActivity(intent);
 
                 }
             });
@@ -113,7 +114,7 @@ public class CustomListViewAdapter extends ArrayAdapter<Movie> {
         {
             viewHolder.url.setText("Trailer Coming Soon");
         }
-        */
+
         final ViewHolder finalViewHolder = viewHolder;
         row.setOnClickListener(new View.OnClickListener() {
             @Override
