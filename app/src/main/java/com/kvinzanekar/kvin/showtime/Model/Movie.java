@@ -18,6 +18,7 @@ public class Movie implements Serializable {
     private String yurl;
     private String rating;
 
+
     public static long getId() {
         return id;
     }

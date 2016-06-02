@@ -19,9 +19,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".VideoActivity"></activity>
+        <activity android:name=".VideoActivity" />
         <activity android:name=".DetailsActivity" />
-
+        <activity
+            android:name=".ShowTimeActivity"
+            android:label="@string/title_activity_show_time"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

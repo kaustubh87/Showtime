@@ -1,16 +1,16 @@
 package com.kvinzanekar.kvin.showtime;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.kvinzanekar.kvin.showtime.Data.CustomListViewAdapter;
 import com.kvinzanekar.kvin.showtime.Model.Movie;
 
@@ -18,24 +18,20 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.URLEncoder;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
+
+
 
     //private String url = "https://api.themoviedb.org/3/movie/upcoming?api_key=f89136f312b2a24e23a0608ddbe3dc81";
     //private String url = "http://data.tmsapi.com/v1.1/movies/showings?startDate=2016-05-25&zip=75252&api_key=kkuc3eefhd9nd43qb6v2z8ny";
     private String kvinapi = "http://www.kvinzanekar.com/webservices/api/v1/movie-list";
-    private String tmsapi = "http://data.tmsapi.com/v1.1/movies/showings?startDate=2016-05-27&zip=78701&api_key=vnzjehsh64w8gpy6p73ncp76";
+    //private String tmsapi = "http://data.tmsapi.com/v1.1/movies/showings?startDate=2016-05-27&zip=78701&api_key=vnzjehsh64w8gpy6p73ncp76";
     private CustomListViewAdapter adapter;
     private ArrayList<Movie> movies = new ArrayList<>();
     private ListView listView;
-    public static String[] title;
-    public static String[] overview;
-    public static String[] release_date;
-    public static String[] images;
-    public static String[] ratings;
-
+    public static Button showTimes;
     public static final String JSON_ARRAY = "";
     public static final String TITLE = "title";
     public static final String OVERVIEW = "overview";
@@ -46,23 +42,32 @@ public class MainActivity extends AppCompatActivity {
     public static final String MOVIE_ID = "tmsId";
     public static final String relativeUrl = "http://www.kvinzanekar.com/webservices/sites/default/files/";
 
-
     private JSONArray results = null;
 
     private String json;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listView = (ListView) findViewById(R.id.list);
-        adapter = new CustomListViewAdapter(MainActivity.this, R.layout.list_row, movies);
-        listView.setAdapter(adapter);
 
         listView = (ListView) findViewById(R.id.list);
         adapter = new CustomListViewAdapter(MainActivity.this, R.layout.list_row, movies);
         listView.setAdapter(adapter);
+
+        showTimes = (Button)findViewById(R.id.showTimes);
+        showTimes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), ShowTimeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
 
        /* StringRequest stringRequest = new StringRequest(url,
                 new Response.Listener<String>() {
@@ -143,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
                         // Log.v("Genre ",genre);
                         String ratings = jsonObject.getString("field_ratings");
                         String youtube_url = jsonObject.getJSONObject("field_youtube_trailer").getString("url");
-                        Log.v("Youtube Url is " ,youtube_url);
+                        //Log.v("Youtube Url is ", youtube_url);
                         Movie movie = new Movie();
                         movie.setTitle(title);
                         movie.setDescription(description);
@@ -252,4 +257,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
 }
