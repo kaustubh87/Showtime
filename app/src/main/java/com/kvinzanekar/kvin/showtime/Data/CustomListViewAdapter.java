@@ -82,8 +82,8 @@ public class CustomListViewAdapter extends ArrayAdapter<Movie> {
 
             viewHolder.thumbnail = (NetworkImageView) row.findViewById(R.id.image);
             viewHolder.title = (TextView) row.findViewById(R.id.title);
-            //viewHolder.description = (TextView) row.findViewById(R.id.description);
-            //viewHolder.releaseDate = (TextView) row.findViewById(R.id.releaseDate);
+            viewHolder.description = (TextView) row.findViewById(R.id.description);
+            viewHolder.releaseDate = (TextView) row.findViewById(R.id.releaseDate);
             viewHolder.genre = (TextView) row.findViewById(R.id.genre);
             viewHolder.url = (TextView) row.findViewById(R.id.video);
             viewHolder.ratingBar = (RatingBar) row.findViewById(R.id.rating);
@@ -98,8 +98,8 @@ public class CustomListViewAdapter extends ArrayAdapter<Movie> {
 
         viewHolder.movie = data.get(position);
         viewHolder.title.setText(viewHolder.movie.getTitle());
-        //viewHolder.description.setText(viewHolder.movie.getDescription());
-        //viewHolder.releaseDate.setText(viewHolder.movie.getReleaseDate());
+        viewHolder.description.setText(viewHolder.movie.getDescription());
+        viewHolder.releaseDate.setText(viewHolder.movie.getReleaseDate());
         viewHolder.genre.setText(viewHolder.movie.getGenre());
         viewHolder.thumbnail.setImageUrl(viewHolder.movie.getThumbnail(), imageLoader);
         viewHolder.ratingBar.setRating(Float.parseFloat(viewHolder.movie.getRating()));
@@ -119,6 +119,8 @@ public class CustomListViewAdapter extends ArrayAdapter<Movie> {
             }
         });
 
+
+
         if (viewHolder.movie.getYurl() != null) {
             viewHolder.url.setText("Watch Trailer " + "Click Here");
             final ViewHolder finalViewHolder = viewHolder;
@@ -137,7 +139,7 @@ public class CustomListViewAdapter extends ArrayAdapter<Movie> {
 
         final ViewHolder finalViewHolder = viewHolder;
 
-       /* row.setOnClickListener(new View.OnClickListener() {
+        row.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent movieDetails = new Intent(getContext(), DetailsActivity.class);
@@ -147,7 +149,7 @@ public class CustomListViewAdapter extends ArrayAdapter<Movie> {
             }
         });
 
-*/
+
         return row;
     }
 
