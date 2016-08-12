@@ -129,6 +129,11 @@ public class ReleasingFragment extends Fragment {
 
         AppController.getInstance().addToRequestQueue(arrayRequest);
 
+        if(movies.size()>0)
+        {
+            movies.clear();
+        }
+
         return rootView;
 
 

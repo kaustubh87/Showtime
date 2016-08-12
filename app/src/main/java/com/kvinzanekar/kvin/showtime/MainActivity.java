@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity{
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new MovieListFragment(), "Upcoming Movies");
         adapter.addFragment(new ReleasingFragment(), "Releasing this Week");
+        adapter.addFragment(new Releasingnextweek(),"Releasing next Week");
         adapter.addFragment(new HollywoodFragment(),"Hollywood");
 
         viewPager.setAdapter(adapter);

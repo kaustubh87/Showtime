@@ -25,12 +25,12 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MovieListFragment extends Fragment {
+public class Releasingnextweek extends Fragment {
 
-    private String url = "https://api.cinemalytics.com/v1/movie/upcoming?auth_token=8FD6E7B756BA7FB39EB82C99A4B570F0";
+    //private String url = "https://api.cinemalytics.com/v1/movie/upcoming?auth_token=8FD6E7B756BA7FB39EB82C99A4B570F0";
     //private String url = "http://data.tmsapi.com/v1.1/movies/showings?startDate=2016-05-25&zip=75252&api_key=kkuc3eefhd9nd43qb6v2z8ny";
-    private String kvinapi = "http://www.kvinzanekar.com/webservices/api/v1/bollywood";
-
+    //private String kvinapi = "http://www.kvinzanekar.com/webservices/api/v1/movie-list";
+    private String releasingNextWeek = "http://www.kvinzanekar.com/webservices/api/v1/releasing-next-week";
     //private String tmsapi = "http://data.tmsapi.com/v1.1/movies/showings?startDate=2016-05-27&zip=78701&api_key=vnzjehsh64w8gpy6p73ncp76";
     private CustomListViewAdapter adapter;
     private ArrayList<Movie> movies = new ArrayList<>();
@@ -51,7 +51,7 @@ public class MovieListFragment extends Fragment {
     private String json;
 
 
-    public MovieListFragment() {
+    public Releasingnextweek() {
         // Required empty public constructor
     }
 
@@ -64,12 +64,12 @@ public class MovieListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_movie_list, container, false);
+        View rootView =  inflater.inflate(R.layout.fragment_releasingnextweek, container, false);
         listView = (ListView)rootView.findViewById(R.id.list);
         adapter = new CustomListViewAdapter(getActivity(), R.layout.list_row, movies);
         listView.setAdapter(adapter);
 
-        JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, kvinapi, new Response.Listener<JSONArray>() {
+        JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, releasingNextWeek, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 for (int i = 0; i < response.length(); i++) {
@@ -125,83 +125,13 @@ public class MovieListFragment extends Fragment {
             }
         });
 
-
-
-        /*
-        JsonArrayRequest arrayRequest2 = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                for(int i=0;i<response.length();i++) {
-                    try {
-                        JSONObject jsonObject = response.getJSONObject(i);
-                        String movieId = jsonObject.getString("Id");
-                        //Log.v("tmsId is ", movieId);
-                        String title = jsonObject.getString("Title");
-                        String description = jsonObject.getString("Description");
-                        //Log.v("Description is ", description);
-                         String imageUrl = jsonObject.getString("PosterPath");
-                        //Log.v("ImageUrl is " ,imageUrl);
-                        String releaseDate = jsonObject.getString("ReleaseDate");
-                        //Log.v("Relase Date is" ,releaseDate);
-                        String genre = jsonObject.getString("Genre");
-                        //Log.v("Genre ",genre);
-                        String ratings = jsonObject.getString("Rating");
-
-                        String yurl = jsonObject.getString("TrailerLink");
-                        Log.v("Yurl is " ,yurl);
-
-
-
-                        Movie movie = new Movie();
-                        //movie.setTitle(movieId);
-                        movie.setTitle(title);
-                        movie.setDescription(description);
-                        movie.setReleaseDate(releaseDate);
-                        movie.setGenre(genre);
-                        movie.setThumbnail(imageUrl);
-                        movie.setRating(ratings);
-
-                     if(yurl.length()!=0) {
-                         movie.setYurl(yurl);
-                     }
-
-
-                        movies.add(movie);
-
-
-                        adapter.notifyDataSetChanged();
-
-                    }
-
-
-                    catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-
-*/
-
         AppController.getInstance().addToRequestQueue(arrayRequest);
 
         if(movies.size()>0)
         {
             movies.clear();
         }
-
-        // AppController.getInstance().addToRequestQueue(arrayRequest2);
-
         return rootView;
     }
-
 
 }
