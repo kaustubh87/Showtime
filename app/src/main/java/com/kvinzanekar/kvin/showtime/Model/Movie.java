@@ -13,11 +13,19 @@ public class Movie implements Serializable {
     private String title;
     private String description;
     private String thumbnail;
+    private String actor_details;
     private String releaseDate;
     private String genre;
     private String yurl;
     private String rating;
 
+    public String getActor_details() {
+        return actor_details;
+    }
+
+    public void setActor_details(String actor_details) {
+        this.actor_details = actor_details;
+    }
 
     public static long getId() {
         return id;

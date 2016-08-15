@@ -3,6 +3,7 @@ package com.kvinzanekar.kvin.showtime;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,6 +85,9 @@ public class MovieListFragment extends Fragment {
                         // Log.v("Description is ", description);
                         String imageUrl = jsonObject.getJSONObject("field_movie_image").getString("filename");
                         imageUrl = relativeUrl + imageUrl;
+                        String actorUrl = jsonObject.getJSONObject("field_actor").getString("filename");
+                        actorUrl = relativeUrl + actorUrl;
+                        //Log.v("Actor url is ", relativeUrl + actorUrl);
                         //Log.v("ImageUrl is " , relativeUrl + imageUrl);
                         //String releaseDate = jsonObject.getString("releaseDate");
                         //Log.v("Relase Date is" ,releaseDate);
@@ -99,6 +103,7 @@ public class MovieListFragment extends Fragment {
                         movie.setGenre(genre);
                         movie.setThumbnail(imageUrl);
                         movie.setRating(ratings);
+                        movie.setActor_details(actorUrl);
 
                         if(youtube_url.length()!=0) {
                             movie.setYurl(youtube_url);

@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
+import android.media.Image;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -87,7 +88,9 @@ public class CustomListViewAdapter extends ArrayAdapter<Movie> {
             viewHolder.genre = (TextView) row.findViewById(R.id.genre);
             viewHolder.url = (TextView) row.findViewById(R.id.video);
             viewHolder.ratingBar = (RatingBar) row.findViewById(R.id.rating);
+            viewHolder.cast = (NetworkImageView)row.findViewById(R.id.cast);
             Drawable progress = viewHolder.ratingBar.getProgressDrawable();
+
             DrawableCompat.setTint(progress, Color.YELLOW);
             row.setTag(viewHolder);
 
@@ -102,6 +105,7 @@ public class CustomListViewAdapter extends ArrayAdapter<Movie> {
         viewHolder.releaseDate.setText(viewHolder.movie.getReleaseDate());
         viewHolder.genre.setText(viewHolder.movie.getGenre());
         viewHolder.thumbnail.setImageUrl(viewHolder.movie.getThumbnail(), imageLoader);
+        //viewHolder.cast.setImageUrl(viewHolder.movie.getActor_details(),imageLoader);
         viewHolder.ratingBar.setRating(Float.parseFloat(viewHolder.movie.getRating()));
         viewHolder.ratingBar.setFocusable(false);
 
@@ -114,6 +118,7 @@ public class CustomListViewAdapter extends ArrayAdapter<Movie> {
                 Intent movieDetails = new Intent(getContext(), DetailsActivity.class);
                 movieDetails.putExtra("Description", description_view_holder.movie.getDescription());
                 movieDetails.putExtra("Image", description_view_holder.movie.getThumbnail());
+                movieDetails.putExtra("CastDetails", description_view_holder.movie.getActor_details());
                 mContext.startActivity(movieDetails);
 
             }
@@ -145,6 +150,7 @@ public class CustomListViewAdapter extends ArrayAdapter<Movie> {
                 Intent movieDetails = new Intent(getContext(), DetailsActivity.class);
                 movieDetails.putExtra("Description", finalViewHolder.movie.getDescription());
                 movieDetails.putExtra("Image", finalViewHolder.movie.getThumbnail());
+                movieDetails.putExtra("CastDetails", description_view_holder.movie.getActor_details());
                 mContext.startActivity(movieDetails);
             }
         });
@@ -158,7 +164,7 @@ public class CustomListViewAdapter extends ArrayAdapter<Movie> {
 
         Movie movie;
         TextView title, description, releaseDate, genre;
-        NetworkImageView thumbnail;
+        NetworkImageView thumbnail, cast;
         TextView url;
         RatingBar ratingBar;
 
