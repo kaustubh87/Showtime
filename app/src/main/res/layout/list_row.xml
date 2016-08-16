@@ -40,7 +40,7 @@
             android:ellipsize="end"
             />
 
-        <!-- Release Date -->
+        <!-- Release Date
         <TextView
             android:id="@+id/releaseDate"
             android:layout_width="wrap_content"
@@ -50,11 +50,12 @@
             android:textColor="@color/text_color"
             android:textSize="10dp" />
 
+-->
         <TextView
             android:id="@+id/genre"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/releaseDate"
+            android:layout_below="@+id/description"
             android:textColor="@color/text_color"
             android:layout_marginTop="5dp"
             android:textSize="10dp" />
@@ -63,7 +64,7 @@
             android:id="@+id/rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/releaseDate"
+            android:layout_below="@id/genre"
             android:layout_gravity="left"
             style="?android:attr/ratingBarStyleSmall"
             android:isIndicator="true" />

@@ -23,15 +23,12 @@ public class DetailsActivity extends AppCompatActivity {
         Intent i = getIntent();
         String url = i.getStringExtra("Description");
         String movie_url = i.getStringExtra("Image");
-        String cast_details = i.getStringExtra("CastDetails");
+
         TextView movieDescription = (TextView) findViewById(R.id.movie_description);
         movieDescription.setText(url);
 
         NetworkImageView image = (NetworkImageView)findViewById(R.id.movie_image);
         image.setImageUrl(movie_url,imageLoader);
-
-        NetworkImageView cast = (NetworkImageView)findViewById(R.id.cast);
-        cast.setImageUrl(cast_details,imageLoader);
 
 
     }

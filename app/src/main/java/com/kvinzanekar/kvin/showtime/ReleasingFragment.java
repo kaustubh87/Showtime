@@ -94,8 +94,6 @@ public class ReleasingFragment extends Fragment {
                         String ratings = jsonObject.getString("field_ratings");
                         String youtube_url = jsonObject.getJSONObject("field_youtube_trailer").getString("url");
                         //Log.v("Youtube Url is ", youtube_url);
-                        String actorUrl = jsonObject.getJSONObject("field_actor").getString("filename");
-                        actorUrl = relativeUrl + actorUrl;
                         Movie movie = new Movie();
                         movie.setTitle(title);
                         movie.setDescription(description);
@@ -103,7 +101,7 @@ public class ReleasingFragment extends Fragment {
                         movie.setGenre(genre);
                         movie.setThumbnail(imageUrl);
                         movie.setRating(ratings);
-                        movie.setActor_details(actorUrl);
+
 
                         if(youtube_url.length()!=0) {
                             movie.setYurl(youtube_url);

@@ -84,11 +84,11 @@ public class CustomListViewAdapter extends ArrayAdapter<Movie> {
             viewHolder.thumbnail = (NetworkImageView) row.findViewById(R.id.image);
             viewHolder.title = (TextView) row.findViewById(R.id.title);
             viewHolder.description = (TextView) row.findViewById(R.id.description);
-            viewHolder.releaseDate = (TextView) row.findViewById(R.id.releaseDate);
+            //viewHolder.releaseDate = (TextView) row.findViewById(R.id.releaseDate);
             viewHolder.genre = (TextView) row.findViewById(R.id.genre);
             viewHolder.url = (TextView) row.findViewById(R.id.video);
             viewHolder.ratingBar = (RatingBar) row.findViewById(R.id.rating);
-            viewHolder.cast = (NetworkImageView)row.findViewById(R.id.cast);
+            //viewHolder.cast = (NetworkImageView)row.findViewById(R.id.cast);
             Drawable progress = viewHolder.ratingBar.getProgressDrawable();
 
             DrawableCompat.setTint(progress, Color.YELLOW);
@@ -102,7 +102,7 @@ public class CustomListViewAdapter extends ArrayAdapter<Movie> {
         viewHolder.movie = data.get(position);
         viewHolder.title.setText(viewHolder.movie.getTitle());
         viewHolder.description.setText(viewHolder.movie.getDescription());
-        viewHolder.releaseDate.setText(viewHolder.movie.getReleaseDate());
+        //viewHolder.releaseDate.setText(viewHolder.movie.getReleaseDate());
         viewHolder.genre.setText(viewHolder.movie.getGenre());
         viewHolder.thumbnail.setImageUrl(viewHolder.movie.getThumbnail(), imageLoader);
         //viewHolder.cast.setImageUrl(viewHolder.movie.getActor_details(),imageLoader);
@@ -118,7 +118,7 @@ public class CustomListViewAdapter extends ArrayAdapter<Movie> {
                 Intent movieDetails = new Intent(getContext(), DetailsActivity.class);
                 movieDetails.putExtra("Description", description_view_holder.movie.getDescription());
                 movieDetails.putExtra("Image", description_view_holder.movie.getThumbnail());
-                movieDetails.putExtra("CastDetails", description_view_holder.movie.getActor_details());
+                //movieDetails.putExtra("CastDetails", description_view_holder.movie.getActor_details());
                 mContext.startActivity(movieDetails);
 
             }
@@ -150,7 +150,7 @@ public class CustomListViewAdapter extends ArrayAdapter<Movie> {
                 Intent movieDetails = new Intent(getContext(), DetailsActivity.class);
                 movieDetails.putExtra("Description", finalViewHolder.movie.getDescription());
                 movieDetails.putExtra("Image", finalViewHolder.movie.getThumbnail());
-                movieDetails.putExtra("CastDetails", description_view_holder.movie.getActor_details());
+               //movieDetails.putExtra("CastDetails", description_view_holder.movie.getActor_details());
                 mContext.startActivity(movieDetails);
             }
         });
@@ -167,7 +167,6 @@ public class CustomListViewAdapter extends ArrayAdapter<Movie> {
         NetworkImageView thumbnail, cast;
         TextView url;
         RatingBar ratingBar;
-
 
     }
 
